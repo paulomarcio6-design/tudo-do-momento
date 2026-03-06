@@ -1,0 +1,152 @@
+{
+  "name": "Tudo do Momento Presentes",
+  "version": "1.0.0",
+  "description": "Loja virtual de dropshipping com IA para pesquisa de mercado e automação de relatórios",
+  "author": "Manus AI",
+  "license": "MIT",
+  "type": "fullstack",
+  "structure": {
+    "frontend": {
+      "type": "react",
+      "path": "./frontend",
+      "port": 3000,
+      "buildCommand": "pnpm run build",
+      "startCommand": "pnpm run dev",
+      "installCommand": "pnpm install",
+      "description": "Frontend React com interface de loja virtual, painel administrativo e páginas legais"
+    },
+    "backend": {
+      "type": "flask",
+      "path": "./backend",
+      "port": 5000,
+      "startCommand": "python3 src/main.py",
+      "installCommand": "pip install -r requirements.txt",
+      "initCommand": "python3 src/init_db.py",
+      "description": "Backend Flask com API REST, banco de dados SQLite e integração com IA"
+    }
+  },
+  "features": {
+    "frontend": [
+      "Página inicial institucional",
+      "Catálogo de produtos com filtros",
+      "Sistema de busca de produtos",
+      "Formulário de contato",
+      "Painel administrativo com dashboard",
+      "Páginas legais (Política de Privacidade, Termos de Uso, Trocas/Devoluções)",
+      "Design responsivo e moderno"
+    ],
+    "backend": [
+      "API REST completa (CRUD de produtos)",
+      "Sistema de contagem de visitas",
+      "Gerenciamento de mensagens de contato",
+      "Painel administrativo com estatísticas",
+      "Geração de relatórios e gráficos",
+      "Banco de dados SQLite com modelos SQLAlchemy",
+      "Integração com OpenAI para pesquisa de mercado"
+    ],
+    "automation": [
+      "Agente de IA para pesquisa de mercado semanal",
+      "Geração automática de planilhas Excel de vendas",
+      "Geração de relatórios em texto",
+      "Envio de relatórios por e-mail",
+      "Atualização automática do catálogo de produtos"
+    ]
+  },
+  "technologies": {
+    "frontend": [
+      "React 18+",
+      "Vite",
+      "TailwindCSS",
+      "Recharts (gráficos)",
+      "Lucide Icons"
+    ],
+    "backend": [
+      "Python 3.8+",
+      "Flask",
+      "SQLAlchemy",
+      "SQLite",
+      "OpenAI API"
+    ],
+    "automation": [
+      "Python 3.8+",
+      "openpyxl (Excel)",
+      "OpenAI API"
+    ]
+  },
+  "environment": {
+    "required": [
+      "OPENAI_API_KEY"
+    ],
+    "optional": [
+      "MAIL_SERVER",
+      "MAIL_PORT",
+      "MAIL_USE_TLS",
+      "MAIL_USERNAME",
+      "MAIL_PASSWORD",
+      "ADMIN_EMAIL"
+    ]
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "./backend/src/database/app.db",
+    "models": [
+      "User",
+      "Product",
+      "Sale",
+      "Visit",
+      "ContactMessage"
+    ]
+  },
+  "scripts": {
+    "ai_market_research": "python3 backend/src/ai_market_research.py",
+    "automation_weekly": "python3 backend/src/automation.py weekly",
+    "automation_monthly": "python3 backend/src/automation.py monthly",
+    "init_db": "python3 backend/src/init_db.py"
+  },
+  "api_endpoints": {
+    "products": "/api/products",
+    "visits": "/api/visits",
+    "contact": "/api/contact",
+    "admin": "/api/admin",
+    "admin_stats": "/api/admin/stats",
+    "admin_sales_data": "/api/admin/sales-data",
+    "admin_top_products": "/api/admin/top-products",
+    "admin_generate_report": "/api/admin/generate-report",
+    "admin_send_report": "/api/admin/send-report",
+    "admin_run_market_research": "/api/admin/run-market-research"
+  },
+  "pages": {
+    "frontend": [
+      "/",
+      "/produtos",
+      "/contato",
+      "/admin",
+      "/politica-privacidade",
+      "/termos-uso",
+      "/trocas-devolucoes"
+    ]
+  },
+  "deployment": {
+    "frontend_build_output": "./frontend/dist",
+    "backend_static_files": "./backend/src/static",
+    "recommended_platforms": [
+      "Antigravity",
+      "Vercel",
+      "Netlify",
+      "Heroku",
+      "Railway",
+      "Render"
+    ]
+  },
+  "setup_instructions": {
+    "step1": "Extrair o arquivo ZIP do projeto",
+    "step2": "Instalar dependências do frontend: cd frontend && pnpm install",
+    "step3": "Instalar dependências do backend: cd backend && pip install -r requirements.txt",
+    "step4": "Inicializar banco de dados: cd backend && python3 src/init_db.py",
+    "step5": "Compilar frontend: cd frontend && pnpm run build",
+    "step6": "Copiar arquivos compilados para backend: cp -r frontend/dist/* backend/src/static/",
+    "step7": "Executar agente de IA (opcional): cd backend && python3 src/ai_market_research.py",
+    "step8": "Iniciar backend: cd backend && python3 src/main.py",
+    "step9": "Acessar em http://localhost:5000"
+  }
+}
