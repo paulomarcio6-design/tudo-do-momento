@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: tdm-fullstack
+    env: python
+    region: oregon
+    buildCommand: "bash build.sh"
+    startCommand: "cd backend && gunicorn src.main:app --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.10.0
