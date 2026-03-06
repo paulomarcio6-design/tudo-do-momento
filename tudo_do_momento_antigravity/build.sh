@@ -12,15 +12,21 @@ nvm use 20
 echo "Installing pnpm..."
 npm install -g pnpm
 
-echo "Building frontend..."
-cd frontend
-pnpm install
-pnpm run build
-cd ..
+if [ -d "frontend" ]; then
+  echo "Building frontend..."
+  cd frontend
+  pnpm install
+  pnpm run build
+  cd ..
 
-echo "Copying frontend build to backend static folder..."
-mkdir -p backend/src/static
-cp -r frontend/dist/* backend/src/static/
+  echo "Copying frontend build to backend static folder..."
+  mkdir -p backend/src/static
+  cp -r frontend/dist/* backend/src/static/
+else
+  echo "WARNING: frontend directory not found. Skipping frontend build..."
+  echo "If you want the web interface to work, make sure to upload the frontend/ folder to GitHub."
+fi
+
 
 echo "Installing backend dependencies..."
 cd backend
