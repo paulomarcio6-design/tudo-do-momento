@@ -36,10 +36,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirnam
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-# Create all tables
-with app.app_context():
-    db.create_all()
-    print("Database tables created successfully!")
+# Create all tables securely and print errors if they crash during startup
+try:
+    with app.app_context():
+        db.create_all()
+        print("Database tables created successfully!")
+except Exception as e:
+    import traceback
+    print("CRITICAL ERROR DURING STARTUP:", e)
+    traceback.print_exc()
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
