@@ -1,10 +1,13 @@
 import sys
 import os
 
-# Adiciona a pasta backend/src no path global do Python para que as importações absolutas (src.models...) funcionem
-sys.path.insert(0, os.path.dirname(__file__))
+# Define o caminho absoluto da pasta `backend` e adiciona ao sys.path
+# Isso garante que imports como `from src.models...` funcionem independente de onde o gunicorn for rodado
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
 
-# Importa a variável app de src/main.py
+# Agora podemos importar do src.main sem problemas
 from src.main import app
 
 if __name__ == "__main__":
